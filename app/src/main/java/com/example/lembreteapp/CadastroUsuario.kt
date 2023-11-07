@@ -28,8 +28,8 @@ class CadastroUsuario : AppCompatActivity() {
         val txtDataNascimento = findViewById<TextInputEditText>(R.id.txt_data)
         val nome = findViewById<TextInputEditText>(R.id.txt_nome)
         val email = txtEmail.text.toString()
-        val senha = txtSenha.text.toString()
-
+        //val senha = txtSenha.text.toString()
+        val senha = "#DFasd2565"
         val dados = mapOf(
             "nome" to nome.text.toString(),
             "cpf" to txtCpf.text.toString(),
@@ -43,6 +43,10 @@ class CadastroUsuario : AppCompatActivity() {
             .addOnSuccessListener {
                 exibirMsg("Bd atualizado!")
             }
+            .addOnFailureListener {
+                exibirMsg("Erro ao atualizar bd!")
+            }
+
         autenticacao.createUserWithEmailAndPassword(
             email,senha
         ).addOnSuccessListener { authResult ->
@@ -50,6 +54,7 @@ class CadastroUsuario : AppCompatActivity() {
             println("Sucesso ao cadastrar")
             exibirMsg("Sucesso ao cadastrar!")
         }
+
     }
 
     fun exibirMsg(texto: String){
